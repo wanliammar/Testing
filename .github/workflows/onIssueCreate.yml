@@ -13,5 +13,5 @@ jobs:
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --data '{
-            "body": "This is my automated comment!"
+            "body": "This is my automated comment! \n ${{ github.event }} -\ngithub.actor: ${{ github.actor }} -\n github.base_ref: ${{ github.base_ref }}-\n github.workflow: ${{ github.workflow }}-\ngithub.run_number: ${{ github.run_number }}-\n github.run_id: ${{ github.run_id }}-\n github.workspace: ${{ github.workspace }}-\n github.event: ${{ github.event }}-\n github.event_name: ${{ github.event_name }}-\n github.event_path: ${{ github.event_path }}-\n github.head_ref: ${{ github.head_ref }}-\n github.job: ${{ github.job }} -\n github.ref: ${{ github.ref }} -\n github.repository: ${{ github.repository }} -\n github.job: ${{ github.job }}"
             }'
