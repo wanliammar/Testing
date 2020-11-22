@@ -9,7 +9,7 @@ jobs:
       - name: Create comment on specific issue
         run: |
           curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issues.number }}/comments \
+          --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --data '{
