@@ -13,5 +13,5 @@ jobs:
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --data '{
-            "body": "This is my automated comment **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            "body": "This is my automated comment!"
             }'
