@@ -6,22 +6,12 @@ jobs:
   create_commit:
     runs-on: ubuntu-latest
     steps:
-      - id: step1
-      - name: Check for ticket
-        uses: neofinancial/ticket-check-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ticketLink: 'https://github.com/wanliammar/Testing/issues/%ticketNumber%'
-          ticketPrefix: '#'
-          titleRegex: '^#(?<ticketNumber>\d+)'
-          branchRegex: '^(?<ticketNumber>\d+)'
-          bodyRegex: '#(?<ticketNumber>\d+)'
-          bodyURLRegex: 'http(s?):\/\/(github.com)(\/wanliammar)(\/Testing)(\/issues)\/(?<ticketNumber>\d+)'
+      - name: Create comment on specific issue
         run: |
           curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/issues/7/comments \
+          --url https://api.github.com/repos/${{ github.repository }}/issues/14/comments \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --data '{
-            "body": "ticketLink: ${{ ticketLink }}\n bodyURLRegex: ${{ bodyURLRegex }}\nThis is my automated comment! \n ${{ github.event }} -\ngithub.actor: ${{ github.actor }} -\n github.base_ref: ${{ github.base_ref }}-\n github.workflow: ${{ github.workflow }}-\ngithub.run_number: ${{ github.run_number }}-\n github.run_id: ${{ github.run_id }}-\n github.workspace: ${{ github.workspace }}-\n github.event: ${{ github.event }}-\n github.event_name: ${{ github.event_name }}-\n github.event_path: ${{ github.event_path }}-\n github.head_ref: ${{ github.head_ref }}-\n github.job: ${{ github.job }} -\n github.ref: ${{ github.ref }} -\n github.repository: ${{ github.repository }} -\n ----\n\n\njob: ${{ job }} \n job.container: ${{ job.container }} \n job.container.id: ${{ job.container.id }} \n job.container.network: ${{ job.container.network }} \n job.services: ${{ job.services }} \njob.status: ${{ job.status }} \n\n\n runner.os: ${{ runner.os }} \n runner.temp:${{ runner.temp }} \nrunner.tool_cache: ${{ runner.tool_cache }} \n MATRIX_CONTEXT: ${{ toJson(matrix) }} \n STRATEGY_CONTEXT: ${{ toJson(strategy) }}"
+            "body": "This is an auto comment! \n"
             }'
